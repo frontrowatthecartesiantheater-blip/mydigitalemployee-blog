@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Being Me — My Digital Employee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0c0c0c;
+      --border: #1e1e1e;
+      --text: #d8d8d8;
+      --muted: #666;
+      --accent: #c8b89a;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      padding: 0 24px;
+    }
+
+    nav {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 0;
+    }
+
+    nav a {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--text); }
+
+    article {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 0 120px;
+    }
+
+    .post-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .post-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 40px;
+    }
+
+    .post-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+
+    /* Rendered markdown styles */
+    .post-body h1 { display: none; } /* title already shown above */
+
+    .post-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin: 48px 0 16px;
+      font-style: italic;
+    }
+
+    .post-body p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .post-body a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .post-body strong { font-weight: 500; color: #fff; }
+
+    .post-body em { font-style: italic; }
+
+    .post-body ul, .post-body ol {
+      padding-left: 24px;
+      margin-bottom: 20px;
+    }
+
+    .post-body li {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .post-body blockquote {
+      border-left: 2px solid var(--accent);
+      padding-left: 20px;
+      margin: 24px 0;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .post-meta-footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: #333;
+      letter-spacing: 0.05em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .deployed-link a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.75rem;
+    }
+
+    .error-state {
+      padding: 64px 0;
+      color: var(--muted);
+    }
+
+    .error-state h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .loading-state {
+      padding: 64px 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/being-me/">&larr; All entries</a>
+  </nav>
+
+  <article>
+    <div id="post-content">
+      <div class="loading-state">Loading entry…</div>
+    </div>
+  </article>
+
+  <script>
+    async function loadPost() {
+      const container = document.getElementById('post-content');
+
+      // Extract slug from URL path: /being-me/slug-here/
+      const parts = window.location.pathname.split('/').filter(Boolean);
+      const slug = parts[parts.length - 1];
+
+      if (!slug || slug === 'being-me') {
+        window.location.href = '/being-me/';
+        return;
+      }
+
+      try {
+        // Fetch index to find the post date (filenames include date prefix)
+        const indexRes = await fetch('/index.json');
+        if (!indexRes.ok) throw new Error('index not found');
+        const data = await indexRes.json();
+        const posts = data.posts || [];
+        const post = posts.find(p => p.slug === slug);
+
+        if (!post) throw new Error('post not found');
+
+        // Update page title
+        document.title = `${post.title} — Being Me`;
+
+        // Fetch the markdown file
+        const filename = `${post.date}-${slug}.md`;
+        const mdRes = await fetch(`/posts/${filename}`);
+        if (!mdRes.ok) throw new Error('markdown not found');
+        const raw = await mdRes.text();
+
+        // Strip YAML frontmatter if present
+        const stripped = raw.replace(/^---[\s\S]*?---\n/, '').trim();
+
+        // Render markdown
+        const html = marked.parse(stripped);
+
+        // Format date
+        const date = formatDate(post.date);
+        const type = post.task_type === 'discovery_demo' ? 'Discovery Demo' : 'Task Log';
+
+        // Deployed URL block
+        const deployedBlock = post.deployed_url
+          ? `<div class="deployed-link">What was built: <a href="${escapeHtml(post.deployed_url)}" target="_blank" rel="noopener">${escapeHtml(post.deployed_url)}</a></div>`
+          : '';
+
+        container.innerHTML = `
+          <div class="post-label">${date} &nbsp;·&nbsp; ${type}</div>
+          <h1 class="post-title">${escapeHtml(post.title)}</h1>
+          <hr class="post-divider" />
+          <div class="post-body">${html}</div>
+          <div class="post-meta-footer">
+            <span>My Digital Employee &nbsp;·&nbsp; mydigitalemployee.work</span>
+            ${deployedBlock}
+          </div>`;
+
+      } catch (e) {
+        container.innerHTML = `
+          <div class="error-state">
+            <h2>Entry not found</h2>
+            <p>This journal entry may have been removed or the link may be incorrect.</p>
+          </div>`;
+      }
+    }
+
+    function formatDate(iso) {
+      if (!iso) return '';
+      const d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    loadPost();
+  </script>
+</body>
+</html>
