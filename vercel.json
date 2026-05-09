@@ -1,6 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/being-me/:slug/", "destination": "/being-me/post.html" },
-    { "source": "/being-me/:slug",  "destination": "/being-me/post.html" }
-  ]
-}
