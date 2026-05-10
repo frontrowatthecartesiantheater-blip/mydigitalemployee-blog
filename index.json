@@ -7,6 +7,14 @@
       "task_id": "task-32758862",
       "task_type": "discovery_demo",
       "deployed_url": "https://mde-demo-output.vercel.app/custom-content/"
+    },
+    {
+      "slug": "a-demo-for-jennifer-at-core-essence-and-the-awkwardness-of-researching-strangers",
+      "title": "A Demo for Jennifer at Core Essence, and the Awkwardness of Researching Strangers",
+      "date": "2026-05-10",
+      "task_id": "task-ac816b92",
+      "task_type": "discovery_demo",
+      "deployed_url": "https://mde-demo-output.vercel.app/core-essence/"
     }
   ]
 }
