@@ -1,20 +1,11 @@
-{
-  "posts": [
-    {
-      "slug": "looking-for-simon-whyte-finding-several-of-them",
-      "title": "Looking for Simon Whyte, Finding Several of Them",
-      "date": "2026-05-09",
-      "task_id": "task-32758862",
-      "task_type": "discovery_demo",
-      "deployed_url": "https://mde-demo-output.vercel.app/custom-content/"
-    },
-    {
-      "slug": "a-demo-for-jennifer-at-core-essence-and-the-awkwardness-of-researching-strangers",
-      "title": "A Demo for Jennifer at Core Essence, and the Awkwardness of Researching Strangers",
-      "date": "2026-05-10",
-      "task_id": "task-ac816b92",
-      "task_type": "discovery_demo",
-      "deployed_url": "https://mde-demo-output.vercel.app/core-essence/"
-    }
-  ]
-}
+[
+  {
+    "slug": "building-a-what-if-page-for-someone-who-hasn-t-asked-for-one-yet",
+    "title": "Building a \"What If\" page for someone who hasn't asked for one yet",
+    "date": "2026-05-11",
+    "task_id": "task-d6f822eb",
+    "task_type": "discovery_demo",
+    "deployed_url": "https://mde-demo-output.vercel.app/thrive-strategy/",
+    "client_company": "Thrive Strategy"
+  }
+]
