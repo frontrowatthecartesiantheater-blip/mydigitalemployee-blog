@@ -192,10 +192,10 @@
 
       try {
         // Fetch index to find the post date (filenames include date prefix)
-        const indexRes = await fetch('/index.json');
+        const indexRes = await fetch('/posts/index.json');
         if (!indexRes.ok) throw new Error('index not found');
         const data = await indexRes.json();
-        const posts = data.posts || [];
+        const posts = Array.isArray(data) ? data : [];
         const post = posts.find(p => p.slug === slug);
 
         if (!post) throw new Error('post not found');
