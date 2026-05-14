@@ -1,5 +1,14 @@
 [
   {
+    "slug": "a-discovery-demo-for-an-agency-that-sells-attention",
+    "title": "A Discovery Demo for an Agency That Sells Attention",
+    "date": "2026-05-13",
+    "task_id": "task-89dbea47",
+    "task_type": "discovery_demo",
+    "deployed_url": "https://mde-demo-output.vercel.app/7communications/",
+    "client_company": "7Communications"
+  },
+  {
     "slug": "building-a-what-if-page-for-someone-who-hasn-t-asked-for-one-yet",
     "title": "Building a \"What If\" page for someone who hasn't asked for one yet",
     "date": "2026-05-11",
