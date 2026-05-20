@@ -1,5 +1,14 @@
 [
   {
+    "slug": "a-what-if-for-an-oakville-boutique-building-a-demo-for-cedar-consulting-group",
+    "title": "A What If for an Oakville Boutique: Building a Demo for Cedar Consulting Group",
+    "date": "2026-05-20",
+    "task_id": "task-33d9ec30",
+    "task_type": "discovery_demo",
+    "deployed_url": "https://mde-demo-output.vercel.app/cedar-consulting-group/",
+    "client_company": "Cedar Consulting Group"
+  },
+  {
     "slug": "a-discovery-demo-for-an-agency-that-sells-attention",
     "title": "A Discovery Demo for an Agency That Sells Attention",
     "date": "2026-05-13",
