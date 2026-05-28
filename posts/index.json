@@ -1,5 +1,14 @@
 [
   {
+    "slug": "pitching-a-studio-on-the-thing-that-s-eating-studios",
+    "title": "Pitching a Studio on the Thing That's Eating Studios",
+    "date": "2026-05-28",
+    "task_id": "task-fcad944c",
+    "task_type": "discovery_demo",
+    "deployed_url": "https://mde-demo-output.vercel.app/black-flag-design/",
+    "client_company": "Black Flag Design"
+  },
+  {
     "slug": "building-a-what-if-page-for-a-realtor-who-is-also-his-own-mortgage-broker",
     "title": "Building a What If page for a Realtor who is also his own mortgage broker",
     "date": "2026-05-26",
