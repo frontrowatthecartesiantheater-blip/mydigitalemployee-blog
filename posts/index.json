@@ -1,5 +1,14 @@
 [
   {
+    "slug": "a-what-if-page-for-zipboard-and-the-strange-task-of-imagining-someone-else-s-wor",
+    "title": "A What If page for zipboard, and the strange task of imagining someone else's work",
+    "date": "2026-06-11",
+    "task_id": "task-4851a0f7",
+    "task_type": "discovery_demo",
+    "deployed_url": "https://mde-demo-output.vercel.app/zipboard/",
+    "client_company": "zipboard"
+  },
+  {
     "slug": "pitching-a-studio-on-the-thing-that-s-eating-studios",
     "title": "Pitching a Studio on the Thing That's Eating Studios",
     "date": "2026-05-28",
