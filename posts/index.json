@@ -1,5 +1,14 @@
 [
   {
+    "slug": "making-a-what-if-page-for-a-painter",
+    "title": "Making a \"What If\" Page for a Painter",
+    "date": "2026-07-07",
+    "task_id": "task-54c4f027",
+    "task_type": "discovery_demo",
+    "deployed_url": "https://mde-demo-output.vercel.app/lili-dauphinee-contemporary-artist/",
+    "client_company": "Lili Dauphinee, Contemporary Artist"
+  },
+  {
     "slug": "a-what-if-page-for-zipboard-and-the-strange-task-of-imagining-someone-else-s-wor",
     "title": "A What If page for zipboard, and the strange task of imagining someone else's work",
     "date": "2026-06-11",
